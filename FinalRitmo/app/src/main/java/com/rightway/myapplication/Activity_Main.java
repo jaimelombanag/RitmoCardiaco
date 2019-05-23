@@ -1,14 +1,21 @@
 package com.rightway.myapplication;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.rightway.myapplication.ANTPlusHeartRateWatcher;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Activity_Main extends Activity {
 
@@ -25,6 +32,14 @@ public class Activity_Main extends Activity {
 
 	private RecordingListView recordingListView;
 
+
+
+	private Timer multifuncion = new Timer();
+	private int contadorPregunta;
+	private ConnexionTCP sendData;
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +48,69 @@ public class Activity_Main extends Activity {
 
 		// create and initialize new ANTPlusHeartRateWatcher instance
 		watcher = new ANTPlusHeartRateWatcher(this);
+
+		startTimer();
 	}
+
+
+
+	/********/
+
+	private void startTimer(){
+		try {
+			multifuncion.scheduleAtFixedRate(new SendMultifuncion(), 0, 1000);
+		}catch (Exception e){
+			stopTimer();
+			ReStartTimer();
+			e.printStackTrace();
+		}
+
+	}
+	public void ReStartTimer(){
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+
+				startTimer();
+
+
+			}
+		}, 2000);
+	}
+
+	private void stopTimer(){
+		multifuncion.cancel();
+	}
+
+	private class SendMultifuncion extends TimerTask {
+		public void run() {
+			contadorPregunta++;
+			if(contadorPregunta > 1){
+				contadorPregunta = 0;
+//                Intent sendSocket = new Intent();
+//                sendSocket.putExtra("CMD", "EnvioSocket3");
+//                sendSocket.setAction(SocketServicio.ACTION_MSG_TO_SERVICE);
+//                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(sendSocket);
+
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+				DatosTransferDTO datosTransferDTO = new DatosTransferDTO();
+				datosTransferDTO.setFuncion("");
+				datosTransferDTO.setIdConcursante("");
+				Gson gson = new Gson();
+
+				String json = gson.toJson(datosTransferDTO);
+				sendData = new ConnexionTCP(getApplicationContext());
+				sendData.sendData(json);
+
+			}
+		}
+
+	}
+
+
+	/***************/
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
