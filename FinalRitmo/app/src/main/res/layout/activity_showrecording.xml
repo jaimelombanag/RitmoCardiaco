@@ -1,0 +1,131 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <TextView
+        android:id="@+id/recording_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recording_name"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/button_first"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:onClick="firstPeak"
+            android:text="&lt;&lt;"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:onClick="backPeak"
+            android:text="&lt;"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/peak_counter"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/peak_counter"
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
+
+            <Button
+                android:id="@+id/button_goto"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="gotoPeak"
+                android:text="@string/button_goto" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_fwd"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:onClick="fwdPeak"
+            android:text=">"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/button_last"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:onClick="lastPeak"
+            android:text=">>"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/text_dur_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dur_label"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:gravity="right" />
+
+        <TextView
+            android:id="@+id/dur_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00:00"
+            android:layout_weight="2" />
+
+        <TextView
+            android:id="@+id/text_max_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/max_label"
+            android:gravity="right" />
+
+        <TextView
+            android:id="@+id/max_bpm_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="000"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/recording_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:minHeight="360px"
+        android:scaleType="center" />
+
+    <Button
+        android:id="@+id/button_audio_play_stop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_audio_play_stop" />
+
+</LinearLayout>
