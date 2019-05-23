@@ -119,7 +119,13 @@ public class SessionManager implements ConnectionManager.Callbacks {
      */
     public void toggleConnection()
     {
+
+
+    	Log.i("herat", "===============    "    + mConnection.getHrmState() );
     	switch (mConnection.getHrmState()) {
+
+
+
 		case CLOSED:
     		// Connect
     		connectSensor();

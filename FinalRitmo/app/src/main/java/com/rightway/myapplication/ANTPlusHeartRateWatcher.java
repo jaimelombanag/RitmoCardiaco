@@ -176,22 +176,23 @@ public class ANTPlusHeartRateWatcher
 
                // save current heart rate record
               hrrec = new HeartRateRec ( currentMessageCount, new Date(), (byte) computedHeartRate, (int) heartBeatCounter );
-/*
+
                // update UI labels
                if (isConnected()) {
                    myact.runOnUiThread(new Runnable() {
                        @Override
                        public void run() {
-                           myact.setPulse(hrrec.pulse+" (#"+hrrec.heartbeats+")");
+                           //myact.setPulse(hrrec.pulse+" (#"+hrrec.heartbeats+")");
+                           myact.setPulse(hrrec.pulse +"");
                        }
                    });
                }
-*/
+
                if (isRunning()) {
                    // add a new heart rate record to the recording
                    r.add(hrrec);
 
-                   /*
+
                    // update UI labels
         	       myact.runOnUiThread(new Runnable() {
                        @Override
@@ -199,7 +200,7 @@ public class ANTPlusHeartRateWatcher
                            myact.setElapsTime(getTimeElapsedString());
                        }
                    });
-                   */
+
                }
 
           }

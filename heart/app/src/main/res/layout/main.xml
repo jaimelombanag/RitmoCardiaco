@@ -163,7 +163,8 @@
             android:longClickable="true"
             android:background="@drawable/connection_button"
             android:contentDescription="@string/UI_Connection"
-            android:src="@drawable/ic_disconnected" />
+            android:src="@drawable/ic_disconnected"
+            android:onClick="Conectar"/>
 
         <TextView
             android:id="@+id/status"

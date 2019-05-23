@@ -43,22 +43,31 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/currentPulseTextView"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="@string/currentPulse"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="1" />
+
 
         </LinearLayout>
 
     </LinearLayout>
 
+
+
+    <TextView
+        android:id="@+id/currentPulseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/currentPulse"
+        android:textSize="100dp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:textColor="@color/colorRoko"/>
+
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <ImageButton
             android:id="@+id/startStopButton"
@@ -105,11 +114,13 @@
         android:id="@+id/textView"
         android:layout_marginTop="10dp"
         android:lines="@android:integer/config_mediumAnimTime"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:visibility="gone"/>
 
     <com.rightway.myapplication.RecordingListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/recordingListView" />
+        android:id="@+id/recordingListView"
+        android:visibility="gone"/>
 
 </LinearLayout>

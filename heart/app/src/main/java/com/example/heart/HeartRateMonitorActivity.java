@@ -22,7 +22,7 @@ public class HeartRateMonitorActivity extends Activity implements SessionManager
 
 
     /** The Log Tag. */
-    public static final String TAG = "HRMon - App";
+    public static final String TAG = "Ritmo";
 
     /** Update interval */
     public static final long UPDATE_INTERVAL_MILLISEC = 100;
@@ -41,6 +41,7 @@ public class HeartRateMonitorActivity extends Activity implements SessionManager
 
     /** ViewFlipper */
     private ViewFlipper mViewFlipper;
+
 
     /** Display Screen State */
     private enum eDisplayScreen {
@@ -254,6 +255,7 @@ public class HeartRateMonitorActivity extends Activity implements SessionManager
             switch (v.getId()) {
                 case R.id.button_connection:
                     // Toggle the ANT+ connection
+                    Log.i(TAG, "===============SE OPRIMIO    "     );
                     mSessionManager.toggleConnection();
                     break;
                 case R.id.button_heart:
@@ -272,6 +274,9 @@ public class HeartRateMonitorActivity extends Activity implements SessionManager
         }
 
     };
+
+
+
 
     /*
      * Display the HR Data Screen
@@ -324,6 +329,7 @@ public class HeartRateMonitorActivity extends Activity implements SessionManager
             switch (v.getId()) {
                 case R.id.button_connection:
                     // Reset the ANT+ pairing
+                    Log.i(TAG, "===============SE OPRIMIO  LONG  "     );
                     confirmPairingReset();
                     break;
             }
