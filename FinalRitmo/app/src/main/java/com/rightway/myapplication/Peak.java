@@ -7,7 +7,7 @@ public class Peak implements java.io.Serializable {
 	private static final long serialVersionUID = 19743001L;
 	public Date start_time, end_time;
 	public int start_index, end_index;
-	public byte max_pulse;
+	public Integer max_pulse;
 	public long duration;		// in millisec
 	public boolean beginner;
 	public float score;

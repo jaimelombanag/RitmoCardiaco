@@ -21,7 +21,7 @@ import com.dsi.ant.plugins.antplus.pcc.AntPlusHeartRatePcc.IHeartRateDataReceive
 
 import java.util.Date;
 
-
+import static android.content.ContentValues.TAG;
 
 
 public class ANTPlusHeartRateWatcher
@@ -175,7 +175,9 @@ public class ANTPlusHeartRateWatcher
                // TODO : why is currentMessageCount always zero?
 
                // save current heart rate record
-              hrrec = new HeartRateRec ( currentMessageCount, new Date(), (byte) computedHeartRate, (int) heartBeatCounter );
+              hrrec = new HeartRateRec ( currentMessageCount, new Date(), (Integer) computedHeartRate, (int) heartBeatCounter );
+
+
 
                // update UI labels
                if (isConnected()) {
@@ -183,7 +185,8 @@ public class ANTPlusHeartRateWatcher
                        @Override
                        public void run() {
                            //myact.setPulse(hrrec.pulse+" (#"+hrrec.heartbeats+")");
-                           myact.setPulse(hrrec.pulse +"");
+                           Log.i(TAG, "=====Las Pulsaciones son:  "  + hrrec.pulse + "");
+                           myact.setPulse(hrrec.pulse + "");
                        }
                    });
                }

@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.rightway.myapplication.Constantes.constantes;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ import java.net.UnknownHostException;
 
 public class ConnexionTCP {
 
-    private static final String TAG = "Concurso";
+    private static final String TAG = "Heart";
     private static final String MODULO = "TCP";
     private final String ACTION_STRING_ACTIVITY = "ToActivity";
     private Socket socket;
@@ -31,6 +32,7 @@ public class ConnexionTCP {
     private String mensajeEncriptado;
     private Context context;
     public AlertDialog alert;
+
 
 
     public ConnexionTCP(Context _context) {
@@ -58,12 +60,13 @@ public class ConnexionTCP {
             @Override
             public void run() {
                 try {
-
-                    //String IP = sharedPreferences.getString(Constantes.IPSocket, "");
-                    String IP = "201.217.202.180";
-                    int Puerto = 11001;
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                    Log.i(TAG, MODULO + "================================Io:" + sharedPreferences.getString(constantes.IPSocket, "")+ "------");
+                    //String IP = sharedPreferences.getString(constantes.IPSocket, "");
+                    String IP = "200.91.204.38";
+                    int Puerto = constantes.PuertoSocket;
                     socket = new Socket(IP, Puerto);
-                    socket.setSoTimeout(10000);
+                    socket.setSoTimeout(1000);
 
 
                     dataOutputStream = new PrintWriter(socket.getOutputStream(), true);

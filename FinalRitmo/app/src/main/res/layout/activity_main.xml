@@ -55,10 +55,10 @@
         android:id="@+id/currentPulseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/currentPulse"
-        android:textSize="100dp"
+        android:textSize="200dp"
         android:textStyle="bold"
-        android:layout_weight="1"
         android:textColor="@color/colorRoko"/>
 
 

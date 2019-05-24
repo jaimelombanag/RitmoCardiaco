@@ -9,6 +9,8 @@ public class DatosTransferDTO {
     private String idConcursante;
     private String apuesta;
     private String accion;
+    private String id;
+
 
 
     public String getFuncion() {
@@ -67,5 +69,13 @@ public class DatosTransferDTO {
 
     public void setAccion(String accion) {
         this.accion = accion;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -3,6 +3,7 @@ package com.rightway.myapplication;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -13,14 +14,23 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.rightway.myapplication.ANTPlusHeartRateWatcher;
+import com.rightway.myapplication.Constantes.constantes;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Activity_Main extends Activity {
 
-	private static final String TAG = "Activity_Main";
+	private static final String TAG = "Heart";
 	static private ANTPlusHeartRateWatcher watcher;
+	private String pulsos;
+	private String file = "IP_Direccion.txt";
 
 	private TextView connStatusTextView, recStatusTextView, elapsTimeTextView, currentPulseTextView;
 	// TODO why are these public?
@@ -48,7 +58,7 @@ public class Activity_Main extends Activity {
 
 		// create and initialize new ANTPlusHeartRateWatcher instance
 		watcher = new ANTPlusHeartRateWatcher(this);
-
+		LeerIp();
 		startTimer();
 	}
 
@@ -94,17 +104,64 @@ public class Activity_Main extends Activity {
 
 				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 				DatosTransferDTO datosTransferDTO = new DatosTransferDTO();
-				datosTransferDTO.setFuncion("");
-				datosTransferDTO.setIdConcursante("");
+				datosTransferDTO.setId("1");
+				datosTransferDTO.setValor(pulsos);
 				Gson gson = new Gson();
 
 				String json = gson.toJson(datosTransferDTO);
+
+				Log.i(TAG, "=====DEbe enviar:  "  +  json);
+
 				sendData = new ConnexionTCP(getApplicationContext());
 				sendData.sendData(json);
 
 			}
 		}
 
+	}
+
+	/**********************************************************************************************/
+	public void LeerIp(){
+		String line = null;
+
+		try {
+			FileInputStream fileInputStream = new FileInputStream (new File(Environment.getExternalStorageDirectory() + "/Download/" + file));
+			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+			StringBuilder stringBuilder = new StringBuilder();
+
+			while ( (line = bufferedReader.readLine()) != null )
+			{
+				stringBuilder.append(line + System.getProperty("line.separator"));
+			}
+			fileInputStream.close();
+			line = stringBuilder.toString();
+
+			line = line.replace(" ", "");
+			line = line.replace("\r\n", "");
+			line = line.replace("\r", "");
+			line = line.replace("\n", "");
+
+
+			Log.i(TAG, "-----Lo q se lee es"  +  line + "-----");
+
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			SharedPreferences.Editor editor = sharedPreferences.edit();
+			if(line.equalsIgnoreCase("1.1.1.1")){
+				editor.putString(constantes.IPSocket, "192.168.122.100");
+			}else{
+				editor.putString(constantes.IPSocket, line);
+			}
+			editor.commit();
+
+			bufferedReader.close();
+		}
+		catch(FileNotFoundException ex) {
+			Log.d(TAG, ex.getMessage());
+		}
+		catch(IOException ex) {
+			Log.d(TAG, ex.getMessage());
+		}
 	}
 
 
@@ -128,6 +185,7 @@ public class Activity_Main extends Activity {
 	}
 
 	public void setPulse ( String s ) {
+		pulsos = s;
 		currentPulseTextView.setText(s);
 	}
 

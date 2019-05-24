@@ -19,7 +19,7 @@ public class Recording implements java.io.Serializable {
 
 	private static final byte TRESHOLD = 65;
 	private long totalDurationOfPeaksMs;
-	private short maximumHeartRateDuringPeaks;
+	private int maximumHeartRateDuringPeaks;
 	private float totalPeakScore;
 	
 	private HeartRateRec lastRecord;
@@ -203,7 +203,11 @@ public class Recording implements java.io.Serializable {
 		return totalDurationOfPeaksMs / 1000 / 60;
 	}
 
-	public short getMaximumHeartRateDuringPeaks() {
+	public int getMaximumHeartRateDuringPeaksx() {
+		return maximumHeartRateDuringPeaks;
+	}
+
+	public int getMaximumHeartRateDuringPeaks() {
 		return maximumHeartRateDuringPeaks;
 	}
 

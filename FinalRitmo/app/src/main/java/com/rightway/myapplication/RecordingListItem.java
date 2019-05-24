@@ -18,7 +18,7 @@ public class RecordingListItem {
     private float totalDurationInHours = 0;
     private int numberOfPeaks=0;
     private long totalDurationOfPeaksInMinutes = 0;
-    private short maximumHeartRateDuringPeaks = 0;
+    private int maximumHeartRateDuringPeaks = 0;
     private float weightedHourlyPeakScore=0;
 
     public RecordingListItem(Recording rec, RecordingFile rf) {
@@ -34,7 +34,7 @@ public class RecordingListItem {
         totalDurationInHours = rec.getTotalDurationInHours();
         numberOfPeaks = rec.getNumberOfPeaks();
         totalDurationOfPeaksInMinutes = rec.getTotalDurationOfPeaksInMinutes();
-        maximumHeartRateDuringPeaks = rec.getMaximumHeartRateDuringPeaks();
+        maximumHeartRateDuringPeaks = rec.getMaximumHeartRateDuringPeaksx();
         weightedHourlyPeakScore = rec.getweightedHourlyPeakScore();
     }
 
@@ -109,7 +109,7 @@ public class RecordingListItem {
         return totalDurationOfPeaksInMinutes;
     }
 
-    public short getMaximumHeartRateDuringPeaks() {
+    public int getMaximumHeartRateDuringPeaks() {
         return maximumHeartRateDuringPeaks;
     }
 
