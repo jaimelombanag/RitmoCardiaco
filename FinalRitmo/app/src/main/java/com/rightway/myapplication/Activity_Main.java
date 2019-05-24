@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -54,7 +55,14 @@ public class Activity_Main extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		/*******************************Para que La pantalla no se apague*****************************/
+
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		/*********************************************************************************************/
+
 		findViews();
+		currentPulseTextView.setText("77");
 
 		// create and initialize new ANTPlusHeartRateWatcher instance
 		watcher = new ANTPlusHeartRateWatcher(this);
@@ -186,7 +194,7 @@ public class Activity_Main extends Activity {
 
 	public void setPulse ( String s ) {
 		pulsos = s;
-		currentPulseTextView.setText(s);
+		//currentPulseTextView.setText(s);
 	}
 
 	public void setElapsTime ( String s ) { elapsTimeTextView.setText(s); }

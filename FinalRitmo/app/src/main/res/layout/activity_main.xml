@@ -9,11 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="1"
     android:background="#3e3e3e">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logo"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:background="@color/colornegrp">
 
         <ImageButton
             android:id="@+id/connectButton"
@@ -41,11 +46,12 @@
                 android:layout_height="fill_parent"
                 android:text="@string/connStatusMsg"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="1" />
-
-
+                android:layout_weight="1"
+                android:textColor="@color/colorAccent"/>
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 
@@ -56,10 +62,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/currentPulse"
+        android:text="77"
         android:textSize="200dp"
         android:textStyle="bold"
-        android:textColor="@color/colorRoko"/>
+        android:textColor="@color/colorRoko"
+        android:layout_marginTop="40dp"/>
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="bpm"
+        android:textSize="100dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorRoko"
+        />
+
+
+
 
 
 

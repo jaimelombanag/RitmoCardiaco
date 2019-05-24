@@ -4,7 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="connectButton"></string>
     <string name="connStatusMsg"></string>
-    <string name="clickToConnect">Click here to connect</string>
+    <string name="clickToConnect">Pulse para conectar a un dispositivo</string>
     <string name="startStopButton"></string>
     <string name="recStatusMsg"></string>
     <string name="clickToRecord">Click here to start recording</string>
